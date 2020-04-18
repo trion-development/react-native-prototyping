@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import Geolocation from '@react-native-community/geolocation';
 
 interface AppState {
   locationText: string
@@ -15,7 +16,12 @@ export default class App extends React.Component<any, AppState> {
 
   private saveLocation() {
     console.log(`Aktualisiere Ort: ${this.state.editedLocationText}`);
-    this.setState({ locationText: this.state.editedLocationText ? this.state.editedLocationText : "", editedLocationText: "" });
+    Geolocation.getCurrentPosition(pos => {
+      let loc = this.state.editedLocationText ? this.state.editedLocationText : ""
+      this.setState({ locationText: `${loc}: ${pos.coords.latitude}/${pos.coords.longitude}`, editedLocationText: "" });
+    },
+      error => console.log(error),
+      { enableHighAccuracy: false, timeout: 50000 });
   }
 
   private onLocationTextChange(text: string) {
