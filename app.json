@@ -1,0 +1,17 @@
+{
+  "name": "ShowcaseApp",
+  "displayName": "ShowcaseApp",
+  "expo": {
+    "name": "ShowcaseApp",
+    "slug": "ShowcaseApp",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
